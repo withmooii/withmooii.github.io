@@ -1,752 +1,232 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>초등수학연구소 | 초등 필수 교육 정보</title>
-  <meta name="description" content="초등 수학 개념부터 연산, 사고력까지. 수학을 싫어하는 아이도 잡아주는 실전 학습법을 학부모 눈높이로 전달합니다." />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>초등수학연구소 - 집에서 하는 초등 수학 학습법</title>
+<meta name="description" content="초등학생 아들을 둔 엄마가 직접 해보고 효과 있었던 초등 수학 학습법을 공유합니다. 학원 대신 집에서 할 수 있는 수학 공부법."/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --accent:#2563eb;
+  --accent2:#1d4ed8;
+  --bg:#fff;
+  --bg2:#f8fafc;
+  --border:#e2e8f0;
+  --text:#1e293b;
+  --muted:#64748b;
+  --heading:#0f172a;
+}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:var(--text);background:var(--bg);font-size:16px;line-height:1.7;}
 
-    :root {
-      --bg:      #ffffff;
-      --bg2:     #f8f9fb;
-      --bg3:     #f0f2f5;
-      --text:    #1a1a2e;
-      --muted:   #6b7280;
-      --accent:  #2563eb;
-      --accent2: #1d4ed8;
-      --light-accent: #eff6ff;
-      --border:  #e5e7eb;
-      --shadow:  0 2px 16px rgba(0,0,0,0.07);
-    }
+/* ===== HEADER ===== */
+.site-header{background:#fff;border-bottom:2px solid var(--accent);position:sticky;top:0;z-index:100;}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:0.9rem 5%;}
+.logo{font-size:1.5rem;font-weight:900;color:var(--heading);cursor:pointer;letter-spacing:-0.5px;}
+.logo span{color:var(--accent);}
+.header-nav{display:flex;gap:0.2rem;}
+.nav-btn{background:none;border:none;padding:0.45rem 0.85rem;font-size:0.88rem;font-weight:600;color:var(--muted);cursor:pointer;border-radius:6px;transition:all 0.15s;}
+.nav-btn:hover,.nav-btn.active{color:var(--accent);background:#eff6ff;}
+.write-btn{background:var(--accent);color:#fff !important;border-radius:6px;padding:0.45rem 1rem;}
+.write-btn:hover{background:var(--accent2) !important;}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+/* ===== HERO ===== */
+.hero{background:linear-gradient(135deg,#eff6ff 0%,#ffffff 60%);padding:6rem 0 5rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;right:-80px;top:-80px;width:400px;height:400px;background:radial-gradient(circle,#bfdbfe 0%,transparent 70%);pointer-events:none;}
+.hero-badge{display:inline-block;background:#dbeafe;color:var(--accent);font-size:0.78rem;font-weight:700;padding:0.3rem 0.8rem;border-radius:20px;margin-bottom:1.2rem;letter-spacing:0.3px;}
+.hero h1{font-size:2.6rem;font-weight:900;color:var(--heading);line-height:1.25;margin-bottom:1rem;letter-spacing:-1px;}
+.hero h1 em{color:var(--accent);font-style:normal;}
+.hero p{font-size:1.05rem;color:var(--muted);margin-bottom:2rem;line-height:1.8;}
+.btn{display:inline-block;padding:0.7rem 1.5rem;border-radius:8px;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all 0.15s;border:none;margin-right:0.6rem;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:var(--accent2);}
+.btn-ghost{background:transparent;color:var(--accent);border:2px solid var(--accent);}
+.btn-ghost:hover{background:#eff6ff;}
 
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
+/* ===== LAYOUT ===== */
+.with-sidebar{display:grid;grid-template-columns:1fr 300px;gap:2.5rem;padding:2.5rem 5%;align-items:start;}
+@media(max-width:900px){
+  .with-sidebar{grid-template-columns:1fr;}
+  .sidebar{display:none;}
+  .hero h1{font-size:1.8rem;}
+}
 
-    a { color: inherit; text-decoration: none; }
+/* ===== MAIN CONTENT ===== */
+.section-title{font-size:1.15rem;font-weight:800;color:var(--heading);margin-bottom:1.2rem;padding-bottom:0.6rem;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:0.5rem;}
 
-    /* ── NAV ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 5%;
-      height: 64px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    }
+/* Post cards */
+.posts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;}
+.post-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:all 0.18s;}
+.post-card:hover{border-color:var(--accent);box-shadow:0 4px 20px rgba(37,99,235,0.08);transform:translateY(-2px);}
+.post-card-thumb{height:140px;background:linear-gradient(135deg,#eff6ff,#dbeafe);display:flex;align-items:center;justify-content:center;font-size:3rem;}
+.post-card-body{padding:1rem;}
+.post-card-cat{font-size:0.72rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.4rem;}
+.post-card-title{font-size:0.97rem;font-weight:700;color:var(--heading);line-height:1.45;margin-bottom:0.5rem;}
+.post-card-date{font-size:0.75rem;color:var(--muted);}
+.post-card-summary{font-size:0.82rem;color:var(--muted);margin-top:0.4rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.empty-state{text-align:center;padding:4rem 1rem;color:var(--muted);}
+.empty-state .empty-icon{font-size:3rem;margin-bottom:1rem;}
+.empty-state p{font-size:0.9rem;line-height:1.8;}
 
-    .logo {
-      font-size: 1.2rem;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      cursor: pointer;
-      color: var(--text);
-    }
-    .logo span { color: var(--accent); }
+/* ===== SIDEBAR ===== */
+.sidebar{display:flex;flex-direction:column;gap:1.2rem;}
+.widget{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.widget-head{font-size:0.82rem;font-weight:800;color:var(--heading);padding:0.7rem 1rem;background:var(--bg2);border-bottom:1px solid var(--border);letter-spacing:0.3px;}
+.widget-head-dark{font-size:0.82rem;font-weight:800;color:#fff;padding:0.7rem 1rem;background:var(--heading);letter-spacing:0.5px;}
+.widget-body{padding:1rem;}
+.sidebar-search-wrap{display:flex;gap:0.4rem;}
+.sidebar-search-input{flex:1;border:1px solid var(--border);border-radius:6px;padding:0.5rem 0.7rem;font-size:0.83rem;outline:none;}
+.sidebar-search-input:focus{border-color:var(--accent);}
+.sidebar-search-btn{background:var(--accent);color:#fff;border:none;border-radius:6px;padding:0.5rem 0.8rem;font-size:0.8rem;font-weight:700;cursor:pointer;}
+.widget-cat-list{list-style:none;padding:0;margin:0;}
+.widget-cat-list li{display:flex;align-items:center;justify-content:space-between;padding:0.65rem 1rem;font-size:0.85rem;font-weight:600;cursor:pointer;border-bottom:1px solid var(--border);transition:background 0.1s;}
+.widget-cat-list li:last-child{border-bottom:none;}
+.widget-cat-list li:hover{background:#eff6ff;color:var(--accent);}
+.widget-count{background:#eff6ff;color:var(--accent);font-size:0.72rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:10px;}
+.widget-author{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.7rem;}
+.widget-avatar{font-size:2.2rem;background:#eff6ff;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.widget-author-name{font-size:0.88rem;font-weight:700;color:var(--heading);}
+.widget-author-role{font-size:0.75rem;color:var(--muted);}
+.widget-author-desc{font-size:0.8rem;color:var(--muted);line-height:1.6;margin-bottom:0.6rem;}
+.widget-post{display:flex;gap:0.7rem;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border);cursor:pointer;}
+.widget-post:last-child{border-bottom:none;}
+.widget-post:hover .widget-post-title{color:var(--accent);}
+.widget-post-thumb{width:38px;height:38px;border-radius:6px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.widget-post-title{font-size:0.8rem;font-weight:600;color:var(--heading);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.widget-post-date{font-size:0.72rem;color:var(--muted);margin-top:0.15rem;}
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links li span {
-      font-size: 0.88rem;
-      color: var(--muted);
-      cursor: pointer;
-      transition: color 0.2s;
-      font-weight: 500;
-    }
-    .nav-links li span:hover,
-    .nav-links li span.active { color: var(--accent); }
+/* ===== PAGE HERO ===== */
+.page-hero{background:var(--bg2);padding:4rem 5% 3rem;border-bottom:1px solid var(--border);text-align:center;}
+.page-hero h1{font-size:2rem;font-weight:900;color:var(--heading);margin-bottom:0.6rem;margin-left:auto;margin-right:auto;}
+.page-hero p{color:var(--muted);font-size:0.95rem;margin-left:auto;margin-right:auto;}
 
-    /* ── PAGES ── */
-    .page { display: none; }
-    .page.active { display: block; }
+/* ===== CONTENT BLOCK ===== */
+.content-block{max-width:780px;margin:0 auto;padding:3.5rem 5%;}
+.content-block h2{font-size:1.35rem;font-weight:800;color:var(--heading);margin:2.5rem 0 0.8rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
+.content-block h3{font-size:1.05rem;font-weight:700;color:var(--heading);margin:1.8rem 0 0.5rem;}
+.content-block p{color:var(--text);font-size:1rem;line-height:2;margin-bottom:1rem;}
+.content-block ul{margin-left:1.5rem;margin-bottom:1.2rem;}
+.content-block li{margin-bottom:0.5rem;line-height:1.9;font-size:1rem;}
 
-    /* ── HERO ── */
-    .hero {
-      background: linear-gradient(135deg, #eff6ff 0%, #ffffff 60%);
-      padding: 6rem 5% 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      right: 5%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 340px;
-      height: 340px;
-      background: radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%);
-      border-radius: 50%;
-    }
+/* ===== CONTACT FORM ===== */
+.contact-form{display:flex;flex-direction:column;gap:1rem;}
+.form-group label{display:block;font-size:0.85rem;font-weight:700;color:var(--heading);margin-bottom:0.3rem;}
+.form-group input,.form-group textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;font-size:0.92rem;outline:none;font-family:inherit;transition:border 0.15s;}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent);}
+.form-group textarea{min-height:160px;resize:vertical;}
+.submit-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:0.85rem 2rem;font-size:0.95rem;font-weight:700;cursor:pointer;width:100%;transition:background 0.15s;}
+.submit-btn:hover{background:var(--accent2);}
 
-    .hero-badge {
-      display: inline-block;
-      background: var(--light-accent);
-      border: 1px solid #bfdbfe;
-      color: var(--accent);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 0.3rem 0.9rem;
-      border-radius: 100px;
-      margin-bottom: 1.5rem;
-    }
+/* ===== POST VIEW ===== */
+.post-view-wrap{display:grid;grid-template-columns:1fr 300px;gap:2.5rem;padding:2.5rem 5%;align-items:start;}
+@media(max-width:900px){.post-view-wrap{grid-template-columns:1fr;}}
+.post-view-header{padding:3rem 5% 2rem;background:var(--bg2);border-bottom:1px solid var(--border);}
+.post-view-header h1{font-size:1.9rem;font-weight:900;color:var(--heading);line-height:1.35;margin-bottom:0.8rem;}
+.post-view-meta{display:flex;gap:1rem;font-size:0.8rem;color:var(--muted);}
+.post-view-content{font-size:1rem;line-height:2;color:var(--text);}
+.post-view-content h2{font-size:1.3rem;font-weight:800;color:var(--heading);margin:2.5rem 0 1rem;padding-top:1rem;border-top:1px solid var(--border);}
+.post-view-content h3{font-size:1.1rem;font-weight:700;color:var(--heading);margin:1.5rem 0 0.6rem;}
+.post-view-content p{margin-bottom:1.2rem;}
+.post-view-content ul,.post-view-content ol{margin-left:1.5rem;margin-bottom:1.2rem;}
+.post-view-content li{margin-bottom:0.4rem;}
+.post-view-content strong{font-weight:700;color:var(--heading);}
+.post-faq{background:#f0f7ff;border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:1.2rem 1.5rem;margin:1.5rem 0;}
+.post-faq-q{font-weight:700;color:var(--accent);margin-bottom:0.5rem;}
+.post-faq-a{color:var(--text);font-size:0.95rem;}
+.back-btn{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.85rem;font-weight:600;color:var(--muted);cursor:pointer;margin-bottom:1.5rem;transition:color 0.15s;}
+.back-btn:hover{color:var(--accent);}
 
-    .hero h1 {
-      font-size: clamp(2rem, 4.5vw, 3.4rem);
-      font-weight: 900;
-      line-height: 1.2;
-      letter-spacing: -1px;
-      max-width: 640px;
-      margin-bottom: 1.2rem;
-      color: var(--text);
-    }
-    .hero h1 em {
-      font-style: normal;
-      color: var(--accent);
-    }
+/* ===== WRITE EDITOR ===== */
+.write-page{max-width:760px;margin:0 auto;padding:2rem 5% 4rem;}
+.editor-toolbar{display:flex;gap:0.3rem;flex-wrap:wrap;margin-bottom:1rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border);}
+.editor-toolbar button{background:none;border:1px solid var(--border);border-radius:4px;padding:0.3rem 0.6rem;font-size:0.82rem;cursor:pointer;color:var(--text);}
+.editor-toolbar button:hover{background:var(--bg2);border-color:var(--accent);color:var(--accent);}
+[contenteditable]:empty:before{content:attr(data-placeholder);color:#b0bec5;pointer-events:none;}
+[contenteditable]:focus{outline:none;}
+.editor-h1{font-size:1.8rem;font-weight:900;color:var(--heading);line-height:1.4;border:none;width:100%;min-height:2.5rem;}
+.editor-body{min-height:400px;font-size:1rem;line-height:2;color:var(--text);}
+.publish-bar{display:flex;gap:0.8rem;align-items:center;justify-content:flex-end;padding:1rem 0;border-top:1px solid var(--border);margin-top:1.5rem;}
+.publish-select{border:1px solid var(--border);border-radius:6px;padding:0.5rem 0.8rem;font-size:0.85rem;cursor:pointer;outline:none;}
+.publish-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:0.6rem 1.5rem;font-size:0.9rem;font-weight:700;cursor:pointer;}
+.publish-btn:hover{background:var(--accent2);}
+.save-draft-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:0.6rem 1.2rem;font-size:0.9rem;font-weight:600;cursor:pointer;color:var(--muted);}
 
-    .hero p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 500px;
-      margin-bottom: 2.5rem;
-      line-height: 1.8;
-    }
+/* ===== SEARCH RESULTS ===== */
+.search-result-header{padding:2rem 5% 1rem;border-bottom:1px solid var(--border);}
+.search-result-header h2{font-size:1.2rem;font-weight:800;color:var(--heading);}
+.search-result-header p{font-size:0.85rem;color:var(--muted);}
+.search-no-result{padding:3rem 5%;text-align:center;color:var(--muted);}
 
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 1.8rem;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-    .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
-    .btn-ghost {
-      border: 1px solid var(--border);
-      color: var(--text);
-      margin-left: 0.8rem;
-      background: #fff;
-    }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+/* ===== PRIVACY ===== */
+.privacy-content h3{font-size:1rem;font-weight:700;color:var(--heading);margin:1.5rem 0 0.5rem;}
+.privacy-content p{font-size:0.9rem;color:var(--muted);line-height:1.8;}
 
-    /* ── SECTION ── */
-    section { padding: 5rem 5%; }
-    section.alt { background: var(--bg2); }
+/* ===== FOOTER ===== */
+footer{background:#1e293b;color:#94a3b8;padding:3rem 5% 2rem;text-align:center;margin-top:3rem;}
+.footer-logo{font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:0.8rem;}
+.footer-logo span{color:#60a5fa;}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.2rem;}
+.footer-links span{font-size:0.83rem;cursor:pointer;transition:color 0.15s;}
+.footer-links span:hover{color:#fff;}
+.footer-info{font-size:0.78rem;color:#64748b;line-height:2;margin-bottom:0.8rem;}
+.footer-copy{font-size:0.78rem;color:#475569;}
+.footer-copy2{font-size:0.72rem;color:#334155;margin-top:0.3rem;}
 
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 0.6rem;
-    }
+/* ===== ALERT ===== */
+.alert{position:fixed;top:80px;right:2rem;background:#1e293b;color:#fff;padding:0.8rem 1.3rem;border-radius:8px;font-size:0.85rem;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.15);animation:slideIn 0.2s ease;}
+@keyframes slideIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
 
-    h2.section-title {
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      margin-bottom: 0.8rem;
-      color: var(--text);
-    }
-
-    .section-sub {
-      color: var(--muted);
-      max-width: 560px;
-      margin-bottom: 2.5rem;
-      font-size: 0.95rem;
-    }
-
-    /* ── SUBJECT CARDS ── */
-    .subject-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.2rem;
-    }
-    @media (max-width: 768px) { .subject-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 480px) { .subject-grid { grid-template-columns: 1fr; } }
-
-    .subject-card {
-      background: #fff;
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: all 0.2s;
-      cursor: pointer;
-    }
-    .subject-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 4px 20px rgba(37,99,235,0.12);
-      transform: translateY(-4px);
-    }
-    .subject-card .icon {
-      font-size: 2.2rem;
-      margin-bottom: 0.8rem;
-    }
-    .subject-card h3 {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-    }
-    .subject-card p { font-size: 0.82rem; color: var(--muted); }
-    .subject-card .tag {
-      display: inline-block;
-      margin-top: 0.8rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--accent);
-      background: var(--light-accent);
-      padding: 0.2rem 0.6rem;
-      border-radius: 100px;
-    }
-
-    /* ── BLOG POSTS ── */
-    .posts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .post-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: all 0.2s;
-      box-shadow: var(--shadow);
-    }
-    .post-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.1); }
-
-    .post-thumb {
-      height: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-    }
-    .post-thumb.korean { background: linear-gradient(135deg, #fef3c7, #fde68a); }
-    .post-thumb.math   { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
-    .post-thumb.english{ background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
-    .post-thumb.history{ background: linear-gradient(135deg, #fce7f3, #fbcfe8); }
-    .post-thumb.sample { background: linear-gradient(135deg, #f3f4f6, #e5e7eb); }
-
-    .post-body { padding: 1.2rem 1.4rem 1.4rem; }
-    .post-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 0.6rem;
-    }
-    .post-subject {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--accent);
-      background: var(--light-accent);
-      padding: 0.18rem 0.55rem;
-      border-radius: 100px;
-    }
-    .post-date { font-size: 0.75rem; color: var(--muted); }
-    .post-body h4 {
-      font-size: 0.98rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-      line-height: 1.5;
-    }
-    .post-body p { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
-
-    /* ── WRITE CTA ── */
-    .write-cta {
-      background: var(--light-accent);
-      border: 2px dashed #bfdbfe;
-      border-radius: 14px;
-      padding: 2.5rem;
-      text-align: center;
-      margin-top: 1.5rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .write-cta:hover { border-color: var(--accent); background: #dbeafe; }
-    .write-cta .plus { font-size: 2rem; color: var(--accent); margin-bottom: 0.5rem; }
-    .write-cta h4 { font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: 0.3rem; }
-    .write-cta p { font-size: 0.85rem; color: var(--muted); }
-
-    /* ── WRITE PAGE ── */
-    .write-area {
-      padding: 3rem 5%;
-      max-width: 860px;
-    }
-    .write-area h2 { font-size: 1.5rem; font-weight: 900; margin-bottom: 1.5rem; }
-    .write-area label { font-size: 0.85rem; color: var(--muted); display: block; margin-bottom: 0.4rem; margin-top: 1.2rem; font-weight: 600; }
-    .write-area input,
-    .write-area select,
-    .write-area textarea {
-      width: 100%;
-      background: #fff;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      padding: 0.8rem 1rem;
-      color: var(--text);
-      font-family: inherit;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .write-area input:focus,
-    .write-area select:focus,
-    .write-area textarea:focus { border-color: var(--accent); }
-    .write-area textarea { min-height: 160px; resize: vertical; line-height: 1.9; }
-    .write-area .write-actions {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-    .write-area button {
-      padding: 0.8rem 1.8rem;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s;
-    }
-    .btn-save { background: var(--accent); color: #fff; }
-    .btn-save:hover { background: var(--accent2); }
-    .btn-cancel { background: var(--bg3); color: var(--muted); }
-    .btn-cancel:hover { background: var(--border); }
-
-    /* ── PAGE HERO ── */
-    .page-hero {
-      background: var(--bg2);
-      padding: 4rem 5% 3rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .page-hero .badge {
-      display: inline-block;
-      background: var(--light-accent);
-      color: var(--accent);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 0.25rem 0.7rem;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-    }
-    .page-hero h1 {
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 900;
-      letter-spacing: -1px;
-      margin-bottom: 0.8rem;
-      color: var(--text);
-    }
-    .page-hero p { color: var(--muted); max-width: 600px; font-size: 1rem; }
-
-    /* ── CARDS GENERIC ── */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.2rem;
-    }
-    .card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.6rem;
-      transition: all 0.2s;
-      box-shadow: var(--shadow);
-    }
-    .card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .card-num { font-size: 0.72rem; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
-    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .card p { font-size: 0.86rem; color: var(--muted); }
-
-    /* ── HIGHLIGHT BOX ── */
-    .highlight-box {
-      background: var(--light-accent);
-      border: 1px solid #bfdbfe;
-      border-radius: 12px;
-      padding: 1.8rem;
-      margin-bottom: 1.5rem;
-    }
-    .highlight-box h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.7rem;
-    }
-    .highlight-box p { font-size: 0.92rem; color: var(--muted); }
-
-    /* ── TWO COL ── */
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-    @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
-
-    /* ── PROFILE ── */
-    .content-block { padding: 4rem 5%; max-width: 860px; }
-
-    .profile-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2.2rem;
-      display: flex;
-      gap: 2rem;
-      align-items: flex-start;
-      margin-bottom: 2.5rem;
-      box-shadow: var(--shadow);
-    }
-    .avatar {
-      width: 76px;
-      height: 76px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #60a5fa, #2563eb);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      flex-shrink: 0;
-    }
-    .profile-info h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.2rem; }
-    .profile-info .role { font-size: 0.82rem; color: var(--accent); font-weight: 700; margin-bottom: 0.8rem; }
-    .profile-info p { font-size: 0.92rem; color: var(--muted); line-height: 1.8; }
-    .info-list { list-style: none; margin-top: 1.2rem; }
-    .info-list li {
-      display: flex;
-      gap: 0.8rem;
-      padding: 0.7rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.92rem;
-    }
-    .info-list li:last-child { border-bottom: none; }
-    .info-list .label { color: var(--accent); font-weight: 700; width: 80px; flex-shrink: 0; }
-
-    /* ── CONTACT ── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 3rem;
-      padding: 4rem 5%;
-      max-width: 960px;
-    }
-    @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; padding: 3rem 5%; } }
-    .contact-info h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; }
-    .contact-item { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.2rem; }
-    .contact-icon {
-      width: 42px; height: 42px;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; flex-shrink: 0;
-    }
-    .ci-label { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.1rem; }
-    .ci-val { font-size: 0.92rem; font-weight: 600; }
-
-    form { display: flex; flex-direction: column; gap: 0.8rem; }
-    form label { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
-    form input, form textarea, form select {
-      background: #fff;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      color: var(--text);
-      font-family: inherit;
-      font-size: 0.92rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    form input:focus, form textarea:focus, form select:focus { border-color: var(--accent); }
-    form textarea { min-height: 130px; resize: vertical; }
-    form button {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 0.85rem;
-      font-weight: 700;
-      font-size: 0.92rem;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 0.4rem;
-    }
-    form button:hover { background: var(--accent2); }
-
-    /* ── PRIVACY ── */
-    .privacy-content { padding: 4rem 5%; max-width: 800px; }
-    .privacy-content h2 {
-      font-size: 1.15rem; font-weight: 700;
-      margin: 2.5rem 0 0.7rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--border);
-      color: var(--text);
-    }
-    .privacy-content h2:first-of-type { margin-top: 0; }
-    .privacy-content p, .privacy-content li { font-size: 0.92rem; color: var(--muted); line-height: 1.9; }
-    .privacy-content ul { padding-left: 1.3rem; margin-top: 0.5rem; }
-    .privacy-content li { margin-bottom: 0.3rem; }
-    .privacy-content .updated { font-size: 0.82rem; color: var(--muted); margin-bottom: 2rem; }
-
-    /* ── DIVIDER ── */
-    .divider { border: none; border-top: 1px solid var(--border); margin: 0 5%; }
-
-    /* ── SIDEBAR LAYOUT ── */
-    .with-sidebar {
-      display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 2.5rem;
-      padding: 2.5rem 5%;
-      max-width: 1200px;
-      margin: 0 auto;
-      align-items: start;
-    }
-    @media (max-width: 900px) {
-      .with-sidebar { grid-template-columns: 1fr; }
-      .sidebar { display: none; }
-    }
-
-    /* 사이드바 위젯 */
-    .sidebar { position: sticky; top: 80px; }
-    .widget {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow);
-    }
-    .widget-head {
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      padding: 0.65rem 1rem;
-    }
-    .widget-body { padding: 1rem; }
-
-    /* 운영자 위젯 */
-    .widget-author {
-      display: flex;
-      gap: 0.8rem;
-      align-items: center;
-      margin-bottom: 0.8rem;
-    }
-    .widget-avatar {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #60a5fa, #2563eb);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; flex-shrink: 0;
-    }
-    .widget-author-name { font-size: 0.88rem; font-weight: 700; }
-    .widget-author-role { font-size: 0.75rem; color: var(--muted); }
-    .widget-author-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
-
-    /* 과목 위젯 */
-    .widget-subject-list { list-style: none; }
-    .widget-subject-list li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.55rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.88rem;
-      cursor: pointer;
-      transition: color 0.15s;
-    }
-    .widget-subject-list li:last-child { border-bottom: none; }
-    .widget-subject-list li:hover { color: var(--accent); }
-    .widget-count {
-      font-size: 0.72rem;
-      background: var(--bg3);
-      padding: 0.1rem 0.5rem;
-      border-radius: 100px;
-      color: var(--muted);
-    }
-
-    /* 최근글 위젯 */
-    .widget-post {
-      display: flex;
-      gap: 0.7rem;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
-      transition: color 0.15s;
-    }
-    .widget-post:last-child { border-bottom: none; }
-    .widget-post:hover .widget-post-title { color: var(--accent); }
-    .widget-post-thumb {
-      width: 52px; height: 52px;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; flex-shrink: 0;
-    }
-    .widget-post-title {
-      font-size: 0.82rem;
-      font-weight: 600;
-      line-height: 1.4;
-      color: var(--text);
-      transition: color 0.15s;
-    }
-    .widget-post-date { font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
-
-    /* 광고 위젯 자리 */
-    .widget-ad {
-      background: var(--bg3);
-      border: 1.5px dashed var(--border);
-      border-radius: 12px;
-      height: 250px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      color: var(--muted);
-      font-size: 0.78rem;
-    }
-    .widget-ad-label { font-size: 0.65rem; letter-spacing: 0.1em; color: #ccc; margin-top: 0.3rem; }
-
-    /* ── 검색 위젯 ── */
-    .sidebar-search-wrap { display: flex; gap: 0.4rem; }
-    .sidebar-search-input {
-      flex: 1; padding: 0.5rem 0.8rem;
-      border: 1.5px solid var(--border); border-radius: 6px;
-      font-size: 0.83rem; font-family: inherit; outline: none;
-      transition: border-color 0.15s;
-    }
-    .sidebar-search-input:focus { border-color: var(--accent); }
-    .sidebar-search-btn {
-      padding: 0.5rem 0.9rem;
-      background: var(--accent); color: #fff;
-      border: none; border-radius: 6px;
-      font-size: 0.83rem; font-weight: 700;
-      cursor: pointer; font-family: inherit;
-      white-space: nowrap;
-    }
-    .sidebar-search-btn:hover { background: #1d4ed8; }
-
-    /* ── CATEGORIES 위젯 ── */
-    .widget-head-dark {
-      background: #222; color: #fff;
-      font-size: 0.75rem; font-weight: 800;
-      letter-spacing: 0.12em;
-      padding: 0.6rem 1rem;
-      border-radius: 10px 10px 0 0;
-    }
-    .widget-cat-list { list-style: none; padding: 0; margin: 0; }
-    .widget-cat-list li {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0.65rem 1rem;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.85rem; font-weight: 600; cursor: pointer;
-      transition: background 0.12s;
-    }
-    .widget-cat-list li:last-child { border-bottom: none; }
-    .widget-cat-list li:hover { background: var(--bg2); }
-    .widget-cat-list .widget-count {
-      background: var(--accent); color: #fff;
-      font-size: 0.7rem; font-weight: 700;
-      border-radius: 100px; padding: 0.1rem 0.55rem;
-      min-width: 22px; text-align: center;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      padding: 3rem 5%;
-      text-align: center;
-    }
-    .footer-logo { font-size: 1.2rem; font-weight: 900; margin-bottom: 1rem; color: var(--text); }
-    .footer-logo span { color: var(--accent); }
-    .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
-    .footer-links span { font-size: 0.83rem; color: var(--muted); cursor: pointer; }
-    .footer-links span:hover { color: var(--accent); }
-    .footer-copy { font-size: 0.8rem; color: #aaa; }
-
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .profile-card { flex-direction: column; }
-    }
-  </style>
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+  .header-nav .nav-btn:not(.write-btn){display:none;}
+  .hero h1{font-size:1.6rem;}
+  .posts-grid{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
 
-<!-- ══════════════ NAV ══════════════ -->
-<nav>
-  <div class="logo" onclick="showPage('home')">초등수학<span>연구소</span></div>
-  <ul class="nav-links">
-    <li><span onclick="showPage('home')"    id="nav-home"    class="active">홈</span></li>
-    <li><span onclick="showPage('about')"   id="nav-about" style="display:none;"></span></li>
-    <li><span onclick="showPage('site')"    id="nav-site">사이트 소개</span></li>
-    <li><span onclick="showPage('blog')"    id="nav-blog">글 목록</span></li>
-    <li><span onclick="showPage('contact')" id="nav-contact">문의하기</span></li>
-    <li><span onclick="showPage('privacy')" id="nav-privacy">개인정보처리방침</span></li>
-  </ul>
-</nav>
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-top">
+    <div class="logo" onclick="showPage('home')">초등수학<span>연구소</span></div>
+    <nav class="header-nav">
+      <button class="nav-btn" onclick="showPage('home')">홈</button>
+      <button class="nav-btn" onclick="showPage('blog')">전체글</button>
+      <button class="nav-btn" onclick="showPage('site')">사이트 소개</button>
+      <button class="nav-btn" onclick="showPage('contact')">문의하기</button>
+      <button class="nav-btn write-btn" onclick="showPage('write')">✏️ 글쓰기</button>
+    </nav>
+  </div>
+</header>
 
-<!-- ══════════════ HOME ══════════════ -->
-<div id="page-home" class="page active">
-
-  <!-- HERO -->
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home">
+  <!-- Hero -->
   <div class="hero">
-    <div class="hero-badge">🔢 초등 수학 전문 블로그</div>
-    <h1>수학을 싫어하는 아이도<br/><em>잡아주는</em><br/>초등 수학 공부법</h1>
-    <p>수감각·연산·도형·사고력까지.<br/>학부모 눈높이로 쉽고 정확하게 전달합니다.</p>
-    <div>
-      <span class="btn btn-primary" onclick="showPage('blog')">글 읽어보기</span>
-      <span class="btn btn-ghost" onclick="showPage('site')">사이트 소개</span>
+    <div style="display:grid;grid-template-columns:1fr 300px;gap:2.5rem;padding:0 5%;">
+      <div>
+        <div class="hero-badge">🔢 초등 수학 전문 블로그</div>
+        <h1>수학을 싫어하는 아이도<br/><em>잡아주는</em><br/>초등 수학 공부법</h1>
+        <p>수감각·연산·도형·사고력까지.<br/>학부모 눈높이로 쉽고 정확하게 전달합니다.</p>
+        <div>
+          <span class="btn btn-primary" onclick="showPage('blog')">글 읽어보기</span>
+          <span class="btn btn-ghost" onclick="showPage('site')">사이트 소개</span>
+        </div>
+      </div>
+      <div></div>
     </div>
   </div>
 
-  <!-- 본문 + 사이드바 -->
+  <!-- Home with sidebar -->
   <div class="with-sidebar">
-
-    <!-- 메인 -->
-    <div>
-      <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:1.2rem;">
-        <div>
-          <div class="section-label">LATEST POSTS</div>
-          <h2 class="section-title" style="margin-bottom:0;">최근 글</h2>
-        </div>
-        <span onclick="showPage('blog')" style="font-size:0.83rem; color:var(--accent); cursor:pointer; font-weight:600;">전체보기 →</span>
-      </div>
-      <div class="posts-grid" id="home-posts"></div>
-    </div>
-
-    <!-- 사이드바 -->
-    <aside class="sidebar">
-
-      <!-- 블로그 검색 -->
+    <!-- Main -->
+    <main>
+      <div class="section-title">🗒 최신 글</div>
+      <div id="home-posts"></div>
+    </main>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar-home">
       <div class="widget">
         <div class="widget-head">이 블로그 검색</div>
         <div class="widget-body">
@@ -756,8 +236,6 @@
           </div>
         </div>
       </div>
-
-      <!-- CATEGORIES -->
       <div class="widget">
         <div class="widget-head-dark">CATEGORIES</div>
         <div class="widget-body" style="padding:0;">
@@ -766,8 +244,6 @@
           </ul>
         </div>
       </div>
-
-      <!-- 사이트 소개 -->
       <div class="widget">
         <div class="widget-head">사이트 소개</div>
         <div class="widget-body">
@@ -779,56 +255,29 @@
             </div>
           </div>
           <p class="widget-author-desc">학원 대신 집에서 할 수 있는 방법 위주로, 직접 해보고 효과 있었던 것만 씁니다.</p>
-          <span onclick="showPage('site')" style="font-size:0.78rem; color:var(--accent); cursor:pointer; font-weight:600;">자세히 보기 →</span>
+          <span onclick="showPage('site')" style="font-size:0.78rem;color:var(--accent);cursor:pointer;font-weight:600;">자세히 보기 →</span>
         </div>
       </div>
-
-      <!-- 최근글 -->
       <div class="widget">
         <div class="widget-head">최근 글</div>
         <div class="widget-body" id="sidebar-recent"></div>
       </div>
-
     </aside>
   </div>
-
 </div>
 
-<!-- ══════════════ BLOG LIST ══════════════ -->
-<div id="page-blog" class="page">
+<!-- ===== BLOG PAGE ===== -->
+<div id="page-blog" style="display:none;">
   <div class="page-hero">
-    <div class="badge">글 목록</div>
-    <h1>초등수학연구소 글 모음</h1>
-    <p>수감각·연산·도형·사고력 — 초등 수학의 진짜 공부법을 모았습니다.</p>
+    <h1>📚 전체 글</h1>
+    <p>초등 수학에 관한 모든 글을 모아두었습니다.</p>
   </div>
-
   <div class="with-sidebar">
-
-    <!-- 메인 -->
-    <div>
-      <!-- 과목 필터 -->
-      <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:1.5rem;">
-        <button class="filter-btn active" onclick="filterPosts('전체')">전체</button>
-        <button class="filter-btn" onclick="filterPosts('수학')">🔢 수학</button>
-      </div>
-      <style>
-        .filter-btn { padding:0.45rem 1.1rem; border-radius:100px; border:1.5px solid var(--border); background:#fff; color:var(--muted); font-weight:600; font-size:0.82rem; cursor:pointer; transition:all 0.15s; font-family:inherit; }
-        .filter-btn:hover, .filter-btn.active { border-color:var(--accent); color:var(--accent); background:var(--light-accent); }
-      </style>
-
-      <div class="posts-grid" id="blog-posts"></div>
-
-      <div class="write-cta" onclick="showPage('write')" style="margin-top:1.5rem;">
-        <div class="plus">＋</div>
-        <h4>새 글 작성하기</h4>
-        <p>과목을 선택하고 SEO 구조로 바로 써보세요.</p>
-      </div>
-    </div>
-
-    <!-- 사이드바 -->
+    <main>
+      <div id="blog-filter-label" style="font-size:0.85rem;color:var(--muted);margin-bottom:1rem;"></div>
+      <div id="blog-posts"></div>
+    </main>
     <aside class="sidebar">
-
-      <!-- 블로그 검색 -->
       <div class="widget">
         <div class="widget-head">이 블로그 검색</div>
         <div class="widget-body">
@@ -838,8 +287,6 @@
           </div>
         </div>
       </div>
-
-      <!-- CATEGORIES -->
       <div class="widget">
         <div class="widget-head-dark">CATEGORIES</div>
         <div class="widget-body" style="padding:0;">
@@ -848,8 +295,6 @@
           </ul>
         </div>
       </div>
-
-      <!-- 사이트 소개 -->
       <div class="widget">
         <div class="widget-head">사이트 소개</div>
         <div class="widget-body">
@@ -861,513 +306,239 @@
             </div>
           </div>
           <p class="widget-author-desc">학원 대신 집에서 할 수 있는 방법 위주로, 직접 해보고 효과 있었던 것만 씁니다.</p>
-          <span onclick="showPage('site')" style="font-size:0.78rem; color:var(--accent); cursor:pointer; font-weight:600;">자세히 보기 →</span>
+          <span onclick="showPage('site')" style="font-size:0.78rem;color:var(--accent);cursor:pointer;font-weight:600;">자세히 보기 →</span>
         </div>
       </div>
-
-      <!-- 최근글 -->
       <div class="widget">
         <div class="widget-head">최근 글</div>
         <div class="widget-body" id="sidebar-recent-b"></div>
       </div>
-
     </aside>
-
   </div>
 </div>
 
-<!-- ══════════════ WRITE PAGE ══════════════ -->
-<style>
-  /* 에디터 스타일 */
-  #editor-area {
-    outline: none;
-    min-height: 600px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 1rem;
-    line-height: 1.9;
-    color: #1a1a2e;
-    padding: 2rem 0;
-  }
-  #editor-area [data-block] {
-    position: relative;
-    margin-bottom: 1.5rem;
-    border-radius: 8px;
-    transition: background 0.15s;
-  }
-  #editor-area [data-block]:hover { background: #f8f9fb; }
-  #editor-area [data-block]:focus-within { background: #f0f6ff; }
-
-  .block-label {
-    position: absolute;
-    top: 0.4rem;
-    right: 0.6rem;
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: #bfdbfe;
-    letter-spacing: 0.06em;
-    pointer-events: none;
-    text-transform: uppercase;
-  }
-
-  .editor-h1 {
-    font-size: 1.8rem;
-    font-weight: 900;
-    letter-spacing: -0.5px;
-    padding: 0.3rem 0.5rem;
-    border: none;
-    outline: none;
-    width: 100%;
-    background: transparent;
-    color: var(--text);
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-  .editor-h1:empty:before { content: attr(data-placeholder); color: #d1d5db; }
-
-  .editor-intro {
-    background: #f0fdf4;
-    border-left: 4px solid #22c55e;
-    border-radius: 0 8px 8px 0;
-    padding: 1rem 1.2rem 1rem 1rem;
-    min-height: 80px;
-    outline: none;
-    font-size: 0.97rem;
-    line-height: 1.9;
-    color: #166534;
-  }
-  .editor-intro:empty:before { content: attr(data-placeholder); color: #86efac; }
-
-  .editor-h2 {
-    font-size: 1.2rem;
-    font-weight: 800;
-    padding: 0.3rem 0.5rem;
-    outline: none;
-    border-bottom: 2px solid #e5e7eb;
-    color: var(--text);
-  }
-  .editor-h2:empty:before { content: attr(data-placeholder); color: #d1d5db; }
-
-  .editor-body {
-    padding: 0.5rem;
-    outline: none;
-    min-height: 80px;
-    font-size: 0.97rem;
-    line-height: 2;
-    color: #374151;
-  }
-  .editor-body:empty:before { content: attr(data-placeholder); color: #d1d5db; }
-
-  .faq-block { background: var(--bg2); border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 0.6rem; }
-  .faq-q-edit {
-    font-weight: 700;
-    color: var(--accent);
-    outline: none;
-    display: block;
-    width: 100%;
-    padding: 0.2rem 0;
-    font-size: 0.95rem;
-  }
-  .faq-q-edit:empty:before { content: "Q. 질문을 입력하세요"; color: #bfdbfe; }
-  .faq-a-edit {
-    outline: none;
-    display: block;
-    width: 100%;
-    padding: 0.3rem 0;
-    font-size: 0.92rem;
-    color: #374151;
-    line-height: 1.8;
-    min-height: 40px;
-  }
-  .faq-a-edit:empty:before { content: "A. 답변을 입력하세요"; color: #d1d5db; }
-
-  .editor-conclusion {
-    background: var(--light-accent);
-    border: 1px solid #bfdbfe;
-    border-radius: 10px;
-    padding: 1rem 1.2rem;
-    outline: none;
-    min-height: 60px;
-    font-size: 0.95rem;
-    line-height: 1.9;
-    color: #1e40af;
-  }
-  .editor-conclusion:empty:before { content: attr(data-placeholder); color: #bfdbfe; }
-
-  /* 툴바 */
-  #write-toolbar {
-    position: sticky;
-    top: 64px;
-    z-index: 50;
-    background: #fff;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.5rem 5%;
-    flex-wrap: wrap;
-  }
-  .tb-select {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 0.3rem 0.6rem;
-    font-family: inherit;
-    font-size: 0.82rem;
-    color: var(--text);
-    cursor: pointer;
-    outline: none;
-  }
-  .tb-btn {
-    background: none;
-    border: 1px solid transparent;
-    border-radius: 6px;
-    padding: 0.3rem 0.6rem;
-    font-size: 0.82rem;
-    font-weight: 700;
-    cursor: pointer;
-    color: var(--text);
-    font-family: inherit;
-    transition: all 0.15s;
-  }
-  .tb-btn:hover { background: var(--bg3); border-color: var(--border); }
-  .tb-sep { width: 1px; height: 20px; background: var(--border); margin: 0 0.2rem; }
-  .tb-save {
-    margin-left: auto;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 0.45rem 1.2rem;
-    font-weight: 700;
-    font-size: 0.85rem;
-    cursor: pointer;
-    font-family: inherit;
-  }
-  .tb-save:hover { background: var(--accent2); }
-  .tb-cancel {
-    background: var(--bg3);
-    color: var(--muted);
-    border: none;
-    border-radius: 8px;
-    padding: 0.45rem 1rem;
-    font-weight: 600;
-    font-size: 0.85rem;
-    cursor: pointer;
-    font-family: inherit;
-  }
-
-  /* 인트로 카운터 */
-  #intro-counter {
-    font-size: 0.72rem;
-    color: var(--muted);
-    text-align: right;
-    margin-top: -0.8rem;
-    margin-bottom: 0.5rem;
-    padding-right: 0.3rem;
-  }
-</style>
-
-<div id="page-write" class="page">
-
-  <!-- 툴바 -->
-  <div id="write-toolbar">
-    <select class="tb-select" id="write-subject-top">
-      <option value="수학">🔢 수학</option>
-    </select>
-    <div class="tb-sep"></div>
-    <button class="tb-btn" onclick="execCmd('bold')" title="굵게"><b>B</b></button>
-    <button class="tb-btn" onclick="execCmd('italic')" title="기울임"><i>I</i></button>
-    <button class="tb-btn" onclick="execCmd('underline')" title="밑줄"><u>U</u></button>
-    <div class="tb-sep"></div>
-    <button class="tb-btn" onclick="addH2Block()" title="H2 섹션 추가">+ H2 섹션</button>
-    <button class="tb-btn" onclick="addFaqBlock()" title="FAQ 추가">+ FAQ</button>
-    <div class="tb-sep"></div>
-    <button class="tb-cancel" onclick="showPage('blog')">취소</button>
-    <button class="tb-save" onclick="savePost()">발행 →</button>
+<!-- ===== POST VIEW PAGE ===== -->
+<div id="page-post" style="display:none;">
+  <div class="post-view-header">
+    <div style="max-width:760px;margin:0 auto;">
+      <div class="back-btn" onclick="goBack()">← 목록으로</div>
+      <div id="post-view-cat" style="font-size:0.78rem;font-weight:700;color:var(--accent);margin-bottom:0.6rem;"></div>
+      <h1 id="post-view-title"></h1>
+      <div class="post-view-meta">
+        <span id="post-view-date"></span>
+      </div>
+    </div>
   </div>
+  <div class="post-view-wrap">
+    <article class="post-view-content" id="post-view-body"></article>
+    <aside class="sidebar">
+      <div class="widget">
+        <div class="widget-head">이 블로그 검색</div>
+        <div class="widget-body">
+          <div class="sidebar-search-wrap">
+            <input type="text" id="sidebar-search-p" class="sidebar-search-input" placeholder="검색어를 입력하세요" onkeydown="if(event.key==='Enter')sidebarSearch('sidebar-search-p')"/>
+            <button class="sidebar-search-btn" onclick="sidebarSearch('sidebar-search-p')">확인</button>
+          </div>
+        </div>
+      </div>
+      <div class="widget">
+        <div class="widget-head-dark">CATEGORIES</div>
+        <div class="widget-body" style="padding:0;">
+          <ul class="widget-cat-list">
+            <li onclick="filterPosts('수학')"><span>🔢 수학</span><span class="widget-count" id="cnt-수학-p">0</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="widget">
+        <div class="widget-head">최근 글</div>
+        <div class="widget-body" id="sidebar-recent-p"></div>
+      </div>
+    </aside>
+  </div>
+</div>
 
-  <!-- 에디터 본문 -->
-  <div style="max-width: 760px; margin: 0 auto; padding: 0 5% 6rem;">
+<!-- ===== SEARCH RESULTS PAGE ===== -->
+<div id="page-search" style="display:none;">
+  <div class="search-result-header">
+    <h2 id="search-title"></h2>
+    <p id="search-count"></p>
+  </div>
+  <div class="with-sidebar">
+    <main id="search-results"></main>
+    <aside class="sidebar">
+      <div class="widget">
+        <div class="widget-head">이 블로그 검색</div>
+        <div class="widget-body">
+          <div class="sidebar-search-wrap">
+            <input type="text" id="sidebar-search-s" class="sidebar-search-input" placeholder="검색어를 입력하세요" onkeydown="if(event.key==='Enter')sidebarSearch('sidebar-search-s')"/>
+            <button class="sidebar-search-btn" onclick="sidebarSearch('sidebar-search-s')">확인</button>
+          </div>
+        </div>
+      </div>
+      <div class="widget">
+        <div class="widget-head-dark">CATEGORIES</div>
+        <div class="widget-body" style="padding:0;">
+          <ul class="widget-cat-list">
+            <li onclick="filterPosts('수학')"><span>🔢 수학</span><span class="widget-count" id="cnt-수학-s">0</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="widget">
+        <div class="widget-head">최근 글</div>
+        <div class="widget-body" id="sidebar-recent-s"></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- ===== SITE INTRO PAGE ===== -->
+<div id="page-site" style="display:none;">
+  <div class="page-hero">
+    <h1>👩‍👦 사이트 소개</h1>
+    <p>초등수학연구소를 운영하는 이유와 방향을 소개합니다.</p>
+  </div>
+  <div class="content-block">
+    <h2>안녕하세요, 초등학생 아들을 둔 엄마입니다</h2>
+    <p>저는 초등학교에 다니는 아들을 키우면서 수학 때문에 많이 고민했습니다. 학원에 보내야 할까? 문제집을 더 사야 할까? 이런 고민을 하다가 직접 공부하기 시작했습니다.</p>
+    <p>아이가 수학을 싫어하게 되는 이유, 연산 실수가 반복되는 이유, 도형을 어려워하는 이유… 하나씩 찾아보고 직접 아이와 해보면서 효과 있었던 것들을 이 블로그에 기록합니다.</p>
+
+    <h2>이 블로그에서 다루는 내용</h2>
+    <p>초등수학연구소는 초등 수학 한 가지 주제에만 집중합니다. 수감각을 키우는 방법부터 연산 실수 줄이기, 도형 감각 훈련, 사고력 수학까지 — 학원 없이도 집에서 할 수 있는 방법 위주로 씁니다.</p>
+    <ul>
+      <li>수감각·수의 개념 이해 방법</li>
+      <li>연산 실수를 줄이는 훈련법</li>
+      <li>도형과 공간 감각 키우기</li>
+      <li>사고력 수학 접근법</li>
+      <li>학년별 수학 공부 로드맵</li>
+    </ul>
+
+    <h2>운영 방침</h2>
+    <p>직접 해보고 효과가 있었던 것만 씁니다. 광고성 콘텐츠나 협찬 없이, 실제 경험을 바탕으로 솔직하게 작성합니다. 틀린 내용이 있다면 언제든지 <span onclick="showPage('contact')" style="color:var(--accent);cursor:pointer;font-weight:600;">문의하기</span>로 알려주세요.</p>
+
+    <h2>연락처</h2>
+    <p>이메일: ywyj0301@gmail.com</p>
+    <div style="margin-top:2rem;padding:1.2rem;background:var(--bg2);border-radius:8px;font-size:0.9rem;color:var(--muted);">
+      본 블로그의 모든 콘텐츠는 저작권법의 보호를 받습니다. 무단 전재 및 복사·배포를 금합니다.
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTACT PAGE ===== -->
+<div id="page-contact" style="display:none;">
+  <div class="page-hero">
+    <h1>📩 문의하기</h1>
+    <p>궁금하신 점이나 의견을 남겨주세요. 최대한 빠르게 답변드리겠습니다.</p>
+  </div>
+  <div class="content-block">
+    <p style="background:#eff6ff;border-radius:8px;padding:1rem 1.2rem;font-size:0.9rem;color:var(--accent);margin-bottom:2rem;">
+      📧 이메일로 직접 문의하실 수도 있습니다: <strong>ywyj0301@gmail.com</strong>
+    </p>
+    <form class="contact-form" onsubmit="submitContact(event)">
+      <div class="form-group">
+        <label>이름</label>
+        <input type="text" placeholder="이름을 입력하세요" required/>
+      </div>
+      <div class="form-group">
+        <label>이메일</label>
+        <input type="email" placeholder="답변 받으실 이메일 주소" required/>
+      </div>
+      <div class="form-group">
+        <label>제목</label>
+        <input type="text" placeholder="문의 제목을 입력하세요" required/>
+      </div>
+      <div class="form-group">
+        <label>내용</label>
+        <textarea placeholder="문의 내용을 자세히 입력하세요" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">문의 보내기</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== PRIVACY PAGE ===== -->
+<div id="page-privacy" style="display:none;">
+  <div class="page-hero">
+    <h1>🔒 개인정보처리방침</h1>
+    <p>초등수학연구소의 개인정보 처리 방침을 안내합니다.</p>
+  </div>
+  <div class="content-block">
+    <p>초등수학연구소(이하 "본 사이트")는 이용자의 개인정보를 중요시하며, 개인정보보호법에 따라 이용자의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보처리방침을 수립·공개합니다.</p>
+
+    <h3>1. 수집하는 개인정보 항목</h3>
+    <p>본 사이트는 문의하기 서비스 이용 시 다음의 정보를 수집합니다: 이름, 이메일 주소, 문의 내용. 본 사이트는 서비스 이용 과정에서 IP 주소, 쿠키, 서비스 이용 기록 등이 자동으로 생성되어 수집될 수 있습니다.</p>
+
+    <h3>2. 개인정보의 수집 및 이용 목적</h3>
+    <p>수집한 개인정보는 문의에 대한 답변 및 민원 처리, 서비스 제공 및 개선 목적으로만 이용합니다.</p>
+
+    <h3>3. 개인정보의 보유 및 이용 기간</h3>
+    <p>이용자의 개인정보는 수집 목적이 달성된 후 지체 없이 파기합니다. 단, 관계 법령에 의해 보존할 필요가 있는 경우 법령에서 정한 기간 동안 보관합니다.</p>
+
+    <h3>4. 개인정보의 제3자 제공</h3>
+    <p>본 사이트는 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 이용자가 사전에 동의한 경우 또는 법령의 규정에 의거하거나 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우에는 예외로 합니다.</p>
+
+    <h3>5. 쿠키(Cookie) 운용</h3>
+    <p>본 사이트는 이용자에게 개인화된 서비스를 제공하기 위해 쿠키를 사용할 수 있습니다. 이용자는 쿠키 설치에 대한 선택권을 가지고 있으며, 웹브라우저에서 쿠키 허용 여부를 설정할 수 있습니다.</p>
+
+    <h3>6. Google AdSense 및 광고</h3>
+    <p>본 사이트는 Google AdSense를 통해 광고를 게재할 수 있습니다. Google은 쿠키를 사용하여 이용자의 방문 기록을 기반으로 광고를 제공할 수 있습니다. 이용자는 Google 광고 설정 페이지에서 맞춤형 광고를 비활성화할 수 있습니다.</p>
+
+    <h3>7. 개인정보 보호 책임자</h3>
+    <p>운영자: 초등수학연구소<br/>이메일: ywyj0301@gmail.com</p>
+
+    <h3>8. 개인정보처리방침의 변경</h3>
+    <p>본 방침은 2026년 1월 1일부터 시행됩니다. 내용이 변경되는 경우 변경 사항을 본 사이트에 게시합니다.</p>
+  </div>
+</div>
+
+<!-- ===== WRITE PAGE ===== -->
+<div id="page-write" style="display:none;">
+  <div class="write-page">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+      <div class="back-btn" onclick="goBack()">← 돌아가기</div>
+      <div id="edit-post-id" style="display:none;"></div>
+    </div>
+
+    <!-- 툴바 -->
+    <div class="editor-toolbar">
+      <button onclick="execCmd('bold')"><b>B</b></button>
+      <button onclick="execCmd('italic')"><i>I</i></button>
+      <button onclick="execCmd('underline')"><u>U</u></button>
+      <button onclick="insertH2()">H2</button>
+      <button onclick="insertH3()">H3</button>
+      <button onclick="execCmd('insertUnorderedList')">• 목록</button>
+      <button onclick="execCmd('insertOrderedList')">1. 목록</button>
+      <button onclick="insertLink()">🔗 링크</button>
+      <button onclick="insertHR()">── 구분선</button>
+      <button onclick="insertFAQ()">❓ FAQ</button>
+    </div>
 
     <!-- 제목 -->
-    <div data-block="title" style="margin-top: 2rem; margin-bottom: 0.5rem;">
-      <span class="block-label">제목 · 메인키워드 앞배치</span>
-      <div id="editor-title" class="editor-h1" contenteditable="true"
-        data-placeholder="제목을 입력하세요 (예: 초등 수학 개념 잡는 법 집에서 방법 5가지 총정리)"></div>
+    <div id="editor-title" class="editor-h1" contenteditable="true"
+      data-placeholder="제목을 입력하세요"
+      style="margin-top:0.5rem;margin-bottom:1rem;"></div>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin-bottom:1.2rem;"/>
+
+    <!-- 카테고리 선택 -->
+    <div style="margin-bottom:1rem;">
+      <select id="editor-subject" style="border:1px solid var(--border);border-radius:6px;padding:0.4rem 0.8rem;font-size:0.85rem;outline:none;color:var(--text);">
+        <option value="수학">🔢 수학</option>
+      </select>
     </div>
 
-    <!-- 도입부 -->
-    <div data-block="intro">
-      <span class="block-label" style="color:#86efac;">도입부 · 결론 먼저 · 150자</span>
-      <div id="editor-intro" class="editor-intro" contenteditable="true"
-        data-placeholder="결론부터 쓰세요. 인사말 금지.&#10;예) 초등 수학 개념은 연산보다 수감각을 먼저 잡아야 합니다. 집에서 할 수 있는 방법 5가지를 정리했습니다."
-        oninput="updateIntroCount()"></div>
-      <div id="intro-counter">0 / 150자</div>
-    </div>
+    <!-- 본문 -->
+    <div id="editor-body" class="editor-body" contenteditable="true"
+      data-placeholder="본문 내용을 입력하세요. 소개 → 본론(H2 소제목 활용) → FAQ → 마무리 순서로 작성하면 검색 노출에 유리합니다."></div>
 
-    <!-- H2 섹션 컨테이너 -->
-    <div id="editor-sections">
-
-      <div class="editor-section-block" style="margin-bottom:1.5rem; position:relative;">
-        <span class="block-label">H2 소제목</span>
-        <div class="editor-h2" contenteditable="true" data-placeholder="소제목 예) 수감각이란 무엇인가?"></div>
-        <div class="editor-body" contenteditable="true" data-placeholder="내용을 입력하세요."></div>
-      </div>
-
-      <div class="editor-section-block" style="margin-bottom:1.5rem; position:relative;">
-        <span class="block-label">H2 소제목</span>
-        <div class="editor-h2" contenteditable="true" data-placeholder="소제목 예) 집에서 수감각 키우는 방법 5가지"></div>
-        <div class="editor-body" contenteditable="true" data-placeholder="내용을 입력하세요."></div>
-      </div>
-
-      <div class="editor-section-block" style="margin-bottom:1.5rem; position:relative;">
-        <span class="block-label">H2 소제목</span>
-        <div class="editor-h2" contenteditable="true" data-placeholder="소제목 예) 학년별 다른 접근법"></div>
-        <div class="editor-body" contenteditable="true" data-placeholder="내용을 입력하세요."></div>
-      </div>
-
-    </div>
-
-    <!-- FAQ 컨테이너 -->
-    <div id="editor-faqs" style="margin-bottom:1.5rem;">
-      <div style="font-size:0.72rem; font-weight:800; color:var(--accent); letter-spacing:0.08em; margin-bottom:0.8rem; padding:0.3rem 0.5rem;">FAQ · 자주 묻는 질문</div>
-      <div class="faq-block" style="position:relative;">
-        <span class="block-label" style="color:#bfdbfe;">FAQ</span>
-        <div class="faq-q-edit" contenteditable="true"></div>
-        <div class="faq-a-edit" contenteditable="true"></div>
-      </div>
-      <div class="faq-block" style="position:relative;">
-        <span class="block-label" style="color:#bfdbfe;">FAQ</span>
-        <div class="faq-q-edit" contenteditable="true"></div>
-        <div class="faq-a-edit" contenteditable="true"></div>
-      </div>
-    </div>
-
-    <!-- 마무리 -->
-    <div data-block="conclusion" style="position:relative;">
-      <span class="block-label" style="color:#bfdbfe;">마무리 · 요약 + 행동유도</span>
-      <div id="editor-conclusion" class="editor-conclusion" contenteditable="true"
-        data-placeholder="핵심 요약 + 독자가 다음에 할 행동을 제안하세요.&#10;예) 오늘 소개한 방법 중 하나만 골라 내일부터 시작해보세요."></div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ══════════════ POST VIEW ══════════════ -->
-<div id="page-post" class="page">
-  <div style="padding: 3rem 5%; max-width: 800px;" id="post-view-content"></div>
-</div>
-
-<!-- ══════════════ ABOUT ══════════════ -->
-<div id="page-about" class="page" style="display:none;"></div>
-
-<!-- ══════════════ SITE INTRO ══════════════ -->
-<div id="page-site" class="page">
-  <div class="page-hero">
-    <div class="badge">사이트 소개</div>
-    <h1>초등학생 아들을 둔 엄마가<br/>직접 알려주는<br/><em>초등 수학 공부법</em></h1>
-    <p>학원 대신 집에서 할 수 있는 방법 위주로, 실제로 해보고 효과 있었던 것만 씁니다.</p>
-  </div>
-
-  <div class="content-block">
-
-    <div class="profile-card">
-      <div class="avatar">👩‍👦</div>
-      <div class="profile-info">
-        <h3>초등수학연구소 운영자</h3>
-        <div class="role">초등학생 아들 엄마 · 집에서 하는 수학 학습 연구</div>
-        <p>
-          아이가 수학을 싫어하기 시작하면서 학원을 보내기 전에 뭔가 해보자 싶었어요.
-          이것저것 찾아보고 직접 해보면서, 효과가 있었던 방법들을 여기에 기록합니다.
-          비싼 교재나 학원 없이도 충분히 할 수 있는 것들 위주입니다.
-        </p>
-        <ul class="info-list">
-          <li><span class="label">운영 방향</span><span>집에서 엄마표로 할 수 있는 초등 수학 학습법</span></li>
-          <li><span class="label">다루는 주제</span><span>수감각, 연산, 도형, 사고력, 수학 거부감 극복</span></li>
-          <li><span class="label">원칙</span><span>광고·협찬 없이, 직접 해본 것만 씁니다</span></li>
-          <li><span class="label">이메일</span><span>ywyj0301@gmail.com</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="highlight-box">
-      <h3>🎯 이런 분들께 도움이 됩니다</h3>
-      <p>
-        "학원을 보내기엔 이른 것 같고, 그렇다고 어떻게 도와줘야 할지 모르겠다"는 학부모님들을 위한 사이트입니다.
-        초등 수학에서 <strong style="color: var(--text)">집에서도 충분히 할 수 있는데 아무도 알려주지 않는 방법</strong>을 정리합니다.
-      </p>
-    </div>
-
-    <h2 class="section-title" style="font-size: 1.3rem; margin-bottom: 1.2rem;">다루는 주요 주제</h2>
-    <div class="card-grid" style="margin-bottom: 2rem;">
-      <div class="card">
-        <div class="card-num">🔢 수감각</div>
-        <h3>연산 전에 기초부터</h3>
-        <p>수의 크기·관계·패턴을 직관적으로 이해하는 능력. 모든 수학의 출발점입니다.</p>
-      </div>
-      <div class="card">
-        <div class="card-num">➕ 연산</div>
-        <h3>속도보다 정확성</h3>
-        <p>사칙연산의 의미를 알고 푸는 것과 외워서 푸는 것은 완전히 다릅니다.</p>
-      </div>
-      <div class="card">
-        <div class="card-num">📐 도형·측정</div>
-        <h3>눈으로 이해하는 수학</h3>
-        <p>공간 지각, 도형의 성질, 측정 단위. 집에서도 충분히 감각을 키울 수 있습니다.</p>
-      </div>
-      <div class="card">
-        <div class="card-num">🧠 사고력</div>
-        <h3>문제를 읽고 식을 세우는 힘</h3>
-        <p>문장제·서술형이 어려운 이유와 해결법. 사고력 수학의 진짜 의미를 알려드립니다.</p>
-      </div>
-    </div>
-
-    <div class="two-col">
-      <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.6rem;">
-        <h3 style="font-size:0.95rem; font-weight:700; margin-bottom:0.8rem; color:var(--accent)">✅ 이런 정보를 드립니다</h3>
-        <ul style="list-style:none; font-size:0.88rem; color:var(--muted); line-height:2.1;">
-          <li>✔ 직접 경험하거나 검증한 내용</li>
-          <li>✔ 교육 연구·도서 기반 정보</li>
-          <li>✔ 학부모·교사 인터뷰 내용</li>
-          <li>✔ 광고·협찬 없는 순수 정보</li>
-        </ul>
-      </div>
-      <div style="background:#fff; border:1px solid var(--border); border-radius:12px; padding:1.6rem;">
-        <h3 style="font-size:0.95rem; font-weight:700; margin-bottom:0.8rem; color:#ef4444">❌ 하지 않는 것</h3>
-        <ul style="list-style:none; font-size:0.88rem; color:var(--muted); line-height:2.1;">
-          <li>✘ 특정 학원·교재 유료 광고</li>
-          <li>✘ 근거 없는 "비법" 정보</li>
-          <li>✘ AI 자동 복붙 콘텐츠</li>
-          <li>✘ 검증되지 않은 교육 트렌드</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="highlight-box">
-      <h3>📬 독자와 함께 만드는 블로그</h3>
-      <p>
-        다뤄줬으면 하는 주제나 궁금한 점이 있다면
-        <span style="color: var(--accent); cursor:pointer; font-weight:700;" onclick="showPage('contact')">문의하기</span>를 통해 알려주세요.
-        독자의 질문이 다음 글이 됩니다.
-      </p>
+    <!-- 발행 바 -->
+    <div class="publish-bar">
+      <button class="save-draft-btn" onclick="saveDraft()">임시저장</button>
+      <button class="publish-btn" onclick="publishPost()">발행하기</button>
     </div>
   </div>
 </div>
 
-<!-- ══════════════ CONTACT ══════════════ -->
-<div id="page-contact" class="page">
-  <div class="page-hero">
-    <div class="badge">문의하기</div>
-    <h1>궁금한 점이<br/>있으신가요?</h1>
-    <p>콘텐츠 제안, 오류 제보, 기타 문의 무엇이든 연락 주세요.</p>
-  </div>
-
-  <div class="contact-grid">
-    <div class="contact-info">
-      <h3>연락 방법</h3>
-      <div class="contact-item">
-        <div class="contact-icon">📧</div>
-        <div>
-          <div class="ci-label">이메일</div>
-          <div class="ci-val">ywyj0301@gmail.com</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">⏰</div>
-        <div>
-          <div class="ci-label">답변 시간</div>
-          <div class="ci-val">영업일 기준 1~3일 이내</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📝</div>
-        <div>
-          <div class="ci-label">문의 가능 사항</div>
-          <div class="ci-val">콘텐츠 제안, 오류 제보, 블로그 관련 모든 문의</div>
-        </div>
-      </div>
-      <div class="highlight-box" style="margin-top: 1.5rem;">
-        <h3>💡 참고해 주세요</h3>
-        <p style="font-size:0.85rem;">광고·협찬·제품 홍보 제안은 정중히 거절하고 있습니다.</p>
-      </div>
-    </div>
-
-    <div>
-      <form onsubmit="handleContact(event)">
-        <label>이름</label>
-        <input type="text" placeholder="홍길동" required />
-        <label>이메일</label>
-        <input type="email" placeholder="your@email.com" required />
-        <label>문의 유형</label>
-        <select>
-          <option>콘텐츠 제안</option>
-          <option>오류 제보</option>
-          <option>기타 문의</option>
-        </select>
-        <label>문의 내용</label>
-        <textarea placeholder="자유롭게 작성해 주세요." required></textarea>
-        <button type="submit">문의 보내기 →</button>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════ PRIVACY ══════════════ -->
-<div id="page-privacy" class="page">
-  <div class="page-hero">
-    <div class="badge">개인정보처리방침</div>
-    <h1>개인정보처리방침</h1>
-    <p>초등수학연구소는 이용자의 개인정보를 소중히 보호합니다.</p>
-  </div>
-
-  <div class="privacy-content">
-    <p class="updated">최종 업데이트: 2026년 1월 1일</p>
-
-    <h2>1. 개인정보 수집 항목 및 이용 목적</h2>
-    <p>초등수학연구소(이하 "본 사이트")는 문의하기 기능을 통해 다음의 개인정보를 수집합니다.</p>
-    <ul>
-      <li>이름, 이메일 주소</li>
-      <li>문의 내용</li>
-    </ul>
-    <p style="margin-top:0.8rem;">수집한 개인정보는 문의 답변 및 블로그 운영 관련 소통에만 사용하며, 그 외 목적으로는 사용하지 않습니다.</p>
-
-    <h2>2. 개인정보 보유 및 파기</h2>
-    <p>수집된 개인정보는 문의 처리 완료 후 6개월 이내에 파기합니다. 관련 법령에 따라 보관이 필요한 경우 해당 기간 동안 안전하게 보관 후 파기합니다.</p>
-
-    <h2>3. 개인정보 제3자 제공</h2>
-    <p>본 사이트는 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 단, 이용자가 사전에 동의한 경우 또는 법령에 의해 요구되는 경우는 예외로 합니다.</p>
-
-    <h2>4. 쿠키 사용</h2>
-    <p>본 사이트는 Google Analytics, Google AdSense 등의 서비스를 통해 방문자 통계 및 광고 개선을 위한 쿠키를 사용할 수 있습니다. 이용자는 브라우저 설정을 통해 쿠키 수집을 거부할 수 있으며, 이 경우 일부 서비스 이용이 제한될 수 있습니다.</p>
-
-    <h2>5. 이용자의 권리</h2>
-    <p>이용자는 언제든지 다음의 권리를 행사할 수 있습니다.</p>
-    <ul>
-      <li>개인정보 열람 요청</li>
-      <li>개인정보 수정·삭제 요청</li>
-      <li>개인정보 처리 정지 요청</li>
-    </ul>
-    <p style="margin-top:0.8rem;">위 권리 행사는 이메일(ywyj0301@gmail.com)을 통해 요청하실 수 있습니다.</p>
-
-    <h2>6. 개인정보 보호책임자</h2>
-    <ul>
-      <li>담당자: 초등수학연구소 운영자</li>
-      <li>이메일: ywyj0301@gmail.com</li>
-    </ul>
-
-    <h2>7. 이용약관</h2>
-    <p>본 사이트의 콘텐츠(글, 이미지 등)는 저작권법의 보호를 받습니다. 출처를 밝히지 않는 무단 복제·배포를 금지합니다. 본 사이트의 정보는 참고용으로 제공되며, 교육 전문가의 조언을 대체하지 않습니다.</p>
-
-    <h2>8. 방침 변경</h2>
-    <p>본 개인정보처리방침은 법령, 정책, 보안 기술의 변경에 따라 내용이 추가·삭제·수정될 수 있습니다. 변경 시 사이트 상단의 "최종 업데이트" 날짜를 통해 공지합니다.</p>
-
-    <div class="highlight-box" style="margin-top:2.5rem;">
-      <h3>📩 개인정보 관련 문의</h3>
-      <p>개인정보 처리에 관한 문의는 <strong style="color: var(--text)">ywyj0301@gmail.com</strong>으로 연락 주시면 신속히 답변드리겠습니다.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════ FOOTER ══════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-logo">초등수학<span>연구소</span></div>
   <div class="footer-links">
@@ -1375,306 +546,267 @@
     <span onclick="showPage('contact')">문의하기</span>
     <span onclick="showPage('privacy')">개인정보처리방침</span>
   </div>
-  <p class="footer-copy">© 2026 초등수학연구소. 모든 콘텐츠의 무단 복제를 금합니다. | ywyj0301@gmail.com</p>
+  <div class="footer-info">
+    <span>운영자: 초등수학연구소</span>
+    <span style="margin:0 0.8rem;">|</span>
+    <span>이메일: ywyj0301@gmail.com</span>
+    <span style="margin:0 0.8rem;">|</span>
+    <span>주소: 대한민국</span>
+  </div>
+  <p class="footer-copy">© 2026 초등수학연구소. 본 사이트의 모든 콘텐츠는 저작권법의 보호를 받으며, 무단 전재·복사·배포를 금합니다.</p>
+  <p class="footer-copy2">Copyright by 초등수학연구소 All rights reserved.</p>
 </footer>
 
-<!-- ══════════════ SCRIPT ══════════════ -->
 <script>
-  // ── 상태 ──
-  let posts = JSON.parse(localStorage.getItem('chodeung_posts') || '[]');
+// ===== DATA =====
+const subjectIcon = { '수학': '🔢' };
+let posts = JSON.parse(localStorage.getItem('chodeung_posts') || '[]');
+let currentPage = 'home';
+let prevPage = 'home';
+let currentFilter = null;
+let editingId = null;
 
-  // 샘플 글 없음 — 직접 작성한 글만 표시
-
-  const subjectIcon = { '수학':'🔢' };
-  const subjectThumb = { '수학':'math' };
-
-  function renderPosts(filter, targetId) {
-    const container = document.getElementById(targetId);
-    if (!container) return;
-    const list = filter === '전체' ? posts : posts.filter(p => p.subject === filter);
-    if (list.length === 0) {
-      container.innerHTML = '<p style="color:var(--muted); font-size:0.9rem; padding:1rem 0;">아직 글이 없습니다. 첫 글을 작성해보세요!</p>';
-      return;
-    }
-    const limited = targetId === 'home-posts' ? list.slice(-3).reverse() : [...list].reverse();
-    container.innerHTML = limited.map(p => `
-      <div class="post-card" onclick="viewPost(${p.id})">
-        <div class="post-thumb ${subjectThumb[p.subject] || 'sample'}">${subjectIcon[p.subject] || '📄'}</div>
-        <div class="post-body">
-          <div class="post-meta">
-            <span class="post-subject">${p.subject}</span>
-            <span class="post-date">${p.date}</span>
-          </div>
-          <h4>${p.title}</h4>
-          <p>${p.summary || p.body.slice(0, 60) + '...'}</p>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  function viewPost(id) {
-    const p = posts.find(x => x.id === id);
-    if (!p) return;
-    const content = document.getElementById('post-view-content');
-
-    // H2 섹션 렌더
-    const sectionsHtml = (p.sections || []).filter(s => s.title || s.body).map(s => `
-      <div style="margin-bottom:2.5rem;">
-        <h2 style="font-size:1.25rem; font-weight:800; color:var(--text); margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:2px solid var(--border);">${s.title}</h2>
-        <div style="font-size:0.97rem; line-height:2; color:#374151; white-space:pre-wrap;">${s.body}</div>
-      </div>
-    `).join('');
-
-    // FAQ 렌더
-    const faqHtml = (p.faqs || []).filter(f => f.q || f.a).length > 0 ? `
-      <div style="margin-bottom:2.5rem;">
-        <h2 style="font-size:1.25rem; font-weight:800; color:var(--text); margin-bottom:1rem; padding-bottom:0.5rem; border-bottom:2px solid var(--border);">자주 묻는 질문</h2>
-        ${(p.faqs || []).filter(f => f.q || f.a).map(f => `
-          <div style="background:var(--bg2); border-radius:10px; padding:1.2rem; margin-bottom:0.8rem;">
-            <div style="font-weight:700; color:var(--accent); margin-bottom:0.4rem;">Q. ${f.q}</div>
-            <div style="font-size:0.93rem; color:#374151; white-space:pre-wrap;">A. ${f.a}</div>
-          </div>
-        `).join('')}
-      </div>
-    ` : '';
-
-    // 마무리 렌더
-    const conclusionHtml = p.conclusion ? `
-      <div style="background:var(--light-accent); border:1px solid #bfdbfe; border-radius:12px; padding:1.5rem; margin-bottom:2rem;">
-        <div style="font-size:0.75rem; font-weight:700; color:var(--accent); margin-bottom:0.5rem;">✅ 마무리</div>
-        <div style="font-size:0.95rem; line-height:1.9; color:#1e40af; white-space:pre-wrap;">${p.conclusion}</div>
-      </div>
-    ` : '';
-
-    content.innerHTML = `
-      <div style="margin-bottom:1rem;">
-        <span class="post-subject" style="font-size:0.78rem; font-weight:700; color:var(--accent); background:var(--light-accent); padding:0.2rem 0.6rem; border-radius:100px;">${p.subject}</span>
-        <span style="font-size:0.8rem; color:var(--muted); margin-left:0.6rem;">${p.date}</span>
-      </div>
-      <h1 style="font-size:clamp(1.5rem,3vw,2.2rem); font-weight:900; letter-spacing:-0.5px; margin-bottom:1.2rem; line-height:1.3;">${p.title}</h1>
-      <div style="background:#f0fdf4; border-left:4px solid #22c55e; border-radius:0 10px 10px 0; padding:1rem 1.2rem; margin-bottom:2rem; font-size:0.95rem; color:#166534; line-height:1.8; white-space:pre-wrap;">${p.intro || p.summary}</div>
-      ${sectionsHtml}
-      ${faqHtml}
-      ${conclusionHtml}
-      <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--border);">
-        <span class="btn btn-ghost" onclick="showPage('blog')" style="margin-left:0; cursor:pointer;">← 목록으로</span>
-      </div>
-    `;
-    showPage('post');
-  }
-
-  function filterPosts(subject) {
-    document.querySelectorAll('.filter-btn').forEach(b => {
-      b.classList.toggle('active', b.textContent.includes(subject) || (subject === '전체' && b.textContent === '전체'));
-    });
-    renderPosts(subject, 'blog-posts');
-    renderSidebar();
-    showPage('blog');
-  }
-
-  function sidebarSearch(inputId) {
-    const q = document.getElementById(inputId).value.trim().toLowerCase();
-    if (!q) return;
-    const results = posts.filter(p =>
-      p.title.toLowerCase().includes(q) ||
-      (p.intro && p.intro.toLowerCase().includes(q)) ||
-      (p.subject && p.subject.toLowerCase().includes(q))
-    );
-    const container = document.getElementById('blog-posts');
-    if (!container) { showPage('blog'); setTimeout(() => sidebarSearch(inputId), 100); return; }
-    showPage('blog');
-    if (results.length === 0) {
-      container.innerHTML = `<p style="color:var(--muted); padding:1rem 0;">'${q}' 검색 결과가 없습니다.</p>`;
-    } else {
-      container.innerHTML = results.reverse().map(p => `
-        <div class="post-card" onclick="viewPost(${p.id})">
-          <div class="post-thumb ${subjectThumb[p.subject]||'sample'}">${subjectIcon[p.subject]||'📄'}</div>
-          <div class="post-body">
-            <div class="post-meta"><span class="post-subject">${p.subject}</span><span class="post-date">${p.date}</span></div>
-            <h4>${p.title}</h4>
-            <p>${p.summary||''}</p>
-          </div>
-        </div>
-      `).join('');
-    }
-  }
-
-  function renderSidebar() {
-    // 과목별 카운트
-    const subjects = ['수학'];
-    subjects.forEach(s => {
-      const cnt = posts.filter(p => p.subject === s).length;
-      ['cnt-'+s, 'cnt-'+s+'-b'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = cnt;
-      });
-    });
-
-    // 최근글 위젯 (최신 5개)
-    const recent = [...posts].reverse().slice(0, 5);
-    const recentHtml = recent.length === 0
-      ? '<p style="font-size:0.8rem; color:var(--muted);">아직 글이 없습니다.</p>'
-      : recent.map(p => `
-          <div class="widget-post" onclick="viewPost(${p.id})">
-            <div class="widget-post-thumb" style="background:var(--bg2);">${subjectIcon[p.subject]||'📄'}</div>
-            <div>
-              <div class="widget-post-title">${p.title}</div>
-              <div class="widget-post-date">${p.date}</div>
-            </div>
-          </div>
-        `).join('');
-
-    ['sidebar-recent','sidebar-recent-b'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.innerHTML = recentHtml;
-    });
-  }
-
-  // ── 에디터 툴바 ──
-  function execCmd(cmd) {
-    document.execCommand(cmd, false, null);
-  }
-
-  function updateIntroCount() {
-    const el = document.getElementById('editor-intro');
-    const counter = document.getElementById('intro-counter');
-    if (!el || !counter) return;
-    const len = el.innerText.length;
-    counter.textContent = `${len} / 150자`;
-    counter.style.color = len > 150 ? '#ef4444' : len > 120 ? '#f59e0b' : 'var(--muted)';
-  }
-
-  function addH2Block() {
-    const div = document.createElement('div');
-    div.className = 'editor-section-block';
-    div.style.cssText = 'margin-bottom:1.5rem; position:relative;';
-    div.innerHTML = `
-      <span class="block-label">H2 소제목</span>
-      <button onclick="this.parentElement.remove()" style="position:absolute;top:0.2rem;right:2.5rem;background:none;border:none;color:#d1d5db;cursor:pointer;font-size:0.85rem;z-index:1;">✕ 삭제</button>
-      <div class="editor-h2" contenteditable="true" data-placeholder="소제목을 입력하세요"></div>
-      <div class="editor-body" contenteditable="true" data-placeholder="내용을 입력하세요."></div>
-    `;
-    document.getElementById('editor-sections').appendChild(div);
-    div.querySelector('.editor-h2').focus();
-  }
-
-  function addFaqBlock() {
-    const div = document.createElement('div');
-    div.className = 'faq-block';
-    div.style.position = 'relative';
-    div.innerHTML = `
-      <span class="block-label" style="color:#bfdbfe;">FAQ</span>
-      <button onclick="this.parentElement.remove()" style="position:absolute;top:0.4rem;right:0.6rem;background:none;border:none;color:#d1d5db;cursor:pointer;font-size:0.8rem;">✕</button>
-      <div class="faq-q-edit" contenteditable="true"></div>
-      <div class="faq-a-edit" contenteditable="true"></div>
-    `;
-    document.getElementById('editor-faqs').appendChild(div);
-    div.querySelector('.faq-q-edit').focus();
-  }
-
-  function savePost() {
-    const subject    = document.getElementById('write-subject-top').value;
-    const titleEl    = document.getElementById('editor-title');
-    const introEl    = document.getElementById('editor-intro');
-    const conclusionEl = document.getElementById('editor-conclusion');
-
-    const title = titleEl ? titleEl.innerText.trim() : '';
-    const intro = introEl ? introEl.innerText.trim() : '';
-
-    if (!subject) { alert('과목을 선택해주세요.'); return; }
-    if (!title)   { alert('제목을 입력해주세요.'); return; }
-    if (!intro)   { alert('도입부를 입력해주세요.'); return; }
-
-    // H2 섹션 수집
-    const sections = [];
-    document.querySelectorAll('#editor-sections .editor-section-block').forEach(el => {
-      const h2 = el.querySelector('.editor-h2');
-      const body = el.querySelector('.editor-body');
-      const t = h2 ? h2.innerHTML.trim() : '';
-      const b = body ? body.innerHTML.trim() : '';
-      if (t || b) sections.push({ title: t, body: b });
-    });
-
-    // FAQ 수집
-    const faqs = [];
-    document.querySelectorAll('#editor-faqs .faq-block').forEach(el => {
-      const q = el.querySelector('.faq-q-edit');
-      const a = el.querySelector('.faq-a-edit');
-      const qt = q ? q.innerText.trim() : '';
-      const at = a ? a.innerText.trim() : '';
-      if (qt || at) faqs.push({ q: qt, a: at });
-    });
-
-    const conclusion = conclusionEl ? conclusionEl.innerText.trim() : '';
-    const summary = intro.slice(0, 60) + (intro.length > 60 ? '...' : '');
-
-    const now = new Date();
-    const date = `${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')}`;
-    const id = Date.now();
-
-    posts.push({ id, subject, title, intro, summary, sections, faqs, conclusion, date });
-    localStorage.setItem('chodeung_posts', JSON.stringify(posts));
-
-    // 에디터 초기화
-    resetEditor();
-    alert('글이 저장되었습니다!');
-    renderPosts('전체', 'blog-posts');
-    renderPosts('전체', 'home-posts');
-    renderSidebar();
-    showPage('blog');
-  }
-
-  function resetEditor() {
-    const ids = ['editor-title','editor-intro','editor-conclusion'];
-    ids.forEach(id => { const el = document.getElementById(id); if(el) el.innerHTML = ''; });
-    document.getElementById('write-subject-top').value = '';
-
-    // 섹션 초기화 (기본 3개만 남기고 추가분 제거, 내용 비우기)
-    const secContainer = document.getElementById('editor-sections');
-    const secBlocks = secContainer.querySelectorAll('.editor-section-block');
-    secBlocks.forEach((el, i) => {
-      if (i < 3) {
-        el.querySelector('.editor-h2').innerHTML = '';
-        el.querySelector('.editor-body').innerHTML = '';
-      } else { el.remove(); }
-    });
-
-    // FAQ 초기화 (동적 추가분 제거)
-    const faqContainer = document.getElementById('editor-faqs');
-    const faqBlocks = faqContainer.querySelectorAll('.faq-block');
-    faqBlocks.forEach((el, i) => {
-      if (i < 2) {
-        el.querySelector('.faq-q-edit').innerHTML = '';
-        el.querySelector('.faq-a-edit').innerHTML = '';
-      } else { el.remove(); }
-    });
-
-    updateIntroCount();
-  }
-
-  function handleContact(e) {
-    e.preventDefault();
-    alert('문의가 접수되었습니다. 영업일 1~3일 이내에 답변드리겠습니다. 감사합니다!');
-    e.target.reset();
-  }
-
-  // ── 페이지 전환 ──
-  function showPage(name) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-links span').forEach(s => s.classList.remove('active'));
-    document.getElementById('page-' + name).classList.add('active');
-    const navEl = document.getElementById('nav-' + name);
-    if (navEl) navEl.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    if (name === 'blog') { renderPosts('전체', 'blog-posts'); renderSidebar(); }
-    if (name === 'home') { renderPosts('전체', 'home-posts'); renderSidebar(); }
-  }
-
-  // ── 초기 렌더 ──
-  renderPosts('전체', 'home-posts');
+// ===== PAGE NAVIGATION =====
+function showPage(page, data) {
+  prevPage = currentPage;
+  currentPage = page;
+  const pages = ['home','blog','post','search','site','contact','privacy','write'];
+  pages.forEach(p => {
+    const el = document.getElementById('page-'+p);
+    if(el) el.style.display = (p === page) ? '' : 'none';
+  });
+  window.scrollTo(0,0);
   renderSidebar();
-</script>
+  if(page === 'home') renderHomePosts();
+  if(page === 'blog') renderBlogPosts();
+}
 
+function goBack() {
+  showPage(prevPage === 'post' ? 'blog' : (prevPage || 'home'));
+}
+
+// ===== RENDER HOME =====
+function renderHomePosts() {
+  const el = document.getElementById('home-posts');
+  if(!el) return;
+  const recent = [...posts].reverse().slice(0, 9);
+  if(recent.length === 0){
+    el.innerHTML = `<div class="empty-state"><div class="empty-icon">📝</div><p>아직 작성된 글이 없습니다.<br/>첫 번째 글을 작성해보세요!</p><br/><span class="btn btn-primary" onclick="showPage('write')">글쓰기</span></div>`;
+  } else {
+    el.innerHTML = `<div class="posts-grid">${recent.map(p => postCard(p)).join('')}</div>`;
+  }
+}
+
+// ===== RENDER BLOG =====
+let blogFilter = null;
+function renderBlogPosts(filter) {
+  if(filter !== undefined) blogFilter = filter;
+  const label = document.getElementById('blog-filter-label');
+  const el = document.getElementById('blog-posts');
+  let filtered = blogFilter ? posts.filter(p => p.subject === blogFilter) : posts;
+  filtered = [...filtered].reverse();
+  if(label) label.textContent = blogFilter ? `카테고리: ${blogFilter} (${filtered.length}개)` : `전체 ${filtered.length}개의 글`;
+  if(!el) return;
+  if(filtered.length === 0){
+    el.innerHTML = `<div class="empty-state"><div class="empty-icon">📭</div><p>글이 없습니다.</p></div>`;
+  } else {
+    el.innerHTML = `<div class="posts-grid">${filtered.map(p => postCard(p)).join('')}</div>`;
+  }
+}
+
+function filterPosts(cat) {
+  blogFilter = cat;
+  showPage('blog');
+  renderBlogPosts(cat);
+}
+
+function postCard(p) {
+  return `<div class="post-card" onclick="viewPost(${p.id})">
+    <div class="post-card-thumb">${subjectIcon[p.subject]||'📄'}</div>
+    <div class="post-card-body">
+      <div class="post-card-cat">${p.subject}</div>
+      <div class="post-card-title">${p.title}</div>
+      <div class="post-card-summary">${stripHtml(p.body).slice(0,80)}…</div>
+      <div class="post-card-date">${p.date}</div>
+    </div>
+  </div>`;
+}
+
+function stripHtml(html) {
+  const div = document.createElement('div');
+  div.innerHTML = html || '';
+  return div.textContent || div.innerText || '';
+}
+
+// ===== VIEW POST =====
+function viewPost(id) {
+  const p = posts.find(x => x.id === id);
+  if(!p) return;
+  prevPage = currentPage;
+  document.getElementById('post-view-cat').textContent = p.subject;
+  document.getElementById('post-view-title').textContent = p.title;
+  document.getElementById('post-view-date').textContent = p.date;
+  document.getElementById('post-view-body').innerHTML = p.body || '';
+  showPage('post');
+  // Add edit/delete buttons
+  const header = document.querySelector('.post-view-header > div');
+  const oldBtns = header.querySelector('.post-actions');
+  if(oldBtns) oldBtns.remove();
+  const btns = document.createElement('div');
+  btns.className = 'post-actions';
+  btns.style.cssText = 'display:flex;gap:0.6rem;margin-top:1rem;';
+  btns.innerHTML = `<span class="btn btn-ghost" style="font-size:0.8rem;padding:0.35rem 0.9rem;" onclick="editPost(${id})">✏️ 수정</span>
+    <span class="btn" style="font-size:0.8rem;padding:0.35rem 0.9rem;background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;" onclick="deletePost(${id})">🗑 삭제</span>`;
+  header.appendChild(btns);
+}
+
+// ===== SIDEBAR =====
+function renderSidebar() {
+  // Category counts
+  const mathCnt = posts.filter(p => p.subject === '수학').length;
+  ['cnt-수학','cnt-수학-b','cnt-수학-p','cnt-수학-s','cnt-수학-si','cnt-수학-c','cnt-수학-pr'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.textContent = mathCnt;
+  });
+  // Recent posts
+  const recent = [...posts].reverse().slice(0, 5);
+  const recentHtml = recent.length === 0
+    ? '<p style="font-size:0.8rem;color:var(--muted);">아직 글이 없습니다.</p>'
+    : recent.map(p => `
+        <div class="widget-post" onclick="viewPost(${p.id})">
+          <div class="widget-post-thumb">${subjectIcon[p.subject]||'📄'}</div>
+          <div>
+            <div class="widget-post-title">${p.title}</div>
+            <div class="widget-post-date">${p.date}</div>
+          </div>
+        </div>`).join('');
+  ['sidebar-recent','sidebar-recent-b','sidebar-recent-p','sidebar-recent-s','sidebar-recent-si','sidebar-recent-c','sidebar-recent-pr'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.innerHTML = recentHtml;
+  });
+}
+
+// ===== SEARCH =====
+function sidebarSearch(inputId) {
+  const q = document.getElementById(inputId).value.trim();
+  if(!q) return;
+  doSearch(q);
+}
+
+function doSearch(q) {
+  const results = posts.filter(p =>
+    p.title.includes(q) || stripHtml(p.body).includes(q)
+  );
+  document.getElementById('search-title').textContent = `"${q}" 검색 결과`;
+  document.getElementById('search-count').textContent = `총 ${results.length}개의 글`;
+  const el = document.getElementById('search-results');
+  if(results.length === 0){
+    el.innerHTML = `<div class="search-no-result"><p>검색 결과가 없습니다.</p></div>`;
+  } else {
+    el.innerHTML = `<div class="posts-grid">${[...results].reverse().map(p => postCard(p)).join('')}</div>`;
+  }
+  showPage('search');
+}
+
+// ===== WRITE EDITOR =====
+function execCmd(cmd, val) {
+  document.getElementById('editor-body').focus();
+  document.execCommand(cmd, false, val || null);
+}
+
+function insertH2() {
+  document.getElementById('editor-body').focus();
+  document.execCommand('formatBlock', false, 'h2');
+}
+function insertH3() {
+  document.getElementById('editor-body').focus();
+  document.execCommand('formatBlock', false, 'h3');
+}
+function insertHR() {
+  document.getElementById('editor-body').focus();
+  document.execCommand('insertHTML', false, '<hr style="border:none;border-top:1px solid #e2e8f0;margin:1.5rem 0;"/><p><br/></p>');
+}
+function insertLink() {
+  const url = prompt('링크 주소를 입력하세요:');
+  if(url) { document.getElementById('editor-body').focus(); document.execCommand('createLink', false, url); }
+}
+function insertFAQ() {
+  document.getElementById('editor-body').focus();
+  document.execCommand('insertHTML', false, `<div style="background:#f0f7ff;border-left:4px solid #2563eb;border-radius:0 8px 8px 0;padding:1.2rem 1.5rem;margin:1.5rem 0;"><p style="font-weight:700;color:#2563eb;margin-bottom:0.5rem;">Q. 질문을 입력하세요</p><p>A. 답변을 입력하세요</p></div><p><br/></p>`);
+}
+
+// ===== PUBLISH =====
+function publishPost() {
+  const title = document.getElementById('editor-title').textContent.trim();
+  const body = document.getElementById('editor-body').innerHTML.trim();
+  const subject = document.getElementById('editor-subject').value;
+  if(!title){ showAlert('제목을 입력하세요'); return; }
+  if(!body || body === '<br>'){ showAlert('내용을 입력하세요'); return; }
+
+  if(editingId !== null) {
+    const idx = posts.findIndex(p => p.id === editingId);
+    if(idx !== -1){ posts[idx].title = title; posts[idx].body = body; posts[idx].subject = subject; }
+    editingId = null;
+  } else {
+    const newPost = { id: Date.now(), title, body, subject, date: new Date().toLocaleDateString('ko-KR') };
+    posts.push(newPost);
+  }
+  localStorage.setItem('chodeung_posts', JSON.stringify(posts));
+  clearEditor();
+  showAlert('✅ 발행 완료!');
+  showPage('blog');
+  renderBlogPosts();
+}
+
+function saveDraft() {
+  showAlert('📋 임시저장 되었습니다');
+}
+
+function clearEditor() {
+  document.getElementById('editor-title').innerHTML = '';
+  document.getElementById('editor-body').innerHTML = '';
+  document.getElementById('editor-subject').value = '수학';
+  editingId = null;
+}
+
+function editPost(id) {
+  const p = posts.find(x => x.id === id);
+  if(!p) return;
+  editingId = id;
+  document.getElementById('editor-title').textContent = p.title;
+  document.getElementById('editor-body').innerHTML = p.body;
+  document.getElementById('editor-subject').value = p.subject;
+  showPage('write');
+}
+
+function deletePost(id) {
+  if(!confirm('이 글을 삭제할까요?')) return;
+  posts = posts.filter(p => p.id !== id);
+  localStorage.setItem('chodeung_posts', JSON.stringify(posts));
+  showAlert('🗑 삭제되었습니다');
+  showPage('blog');
+  renderBlogPosts();
+}
+
+// ===== CONTACT =====
+function submitContact(e) {
+  e.preventDefault();
+  showAlert('✅ 문의가 접수되었습니다. 빠른 시일 내에 답변드리겠습니다.');
+  e.target.reset();
+}
+
+// ===== ALERT =====
+function showAlert(msg) {
+  const el = document.createElement('div');
+  el.className = 'alert';
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 2800);
+}
+
+// ===== INIT =====
+renderHomePosts();
+renderSidebar();
+</script>
 </body>
 </html>
